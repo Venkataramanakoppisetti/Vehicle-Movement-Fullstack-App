@@ -11,6 +11,10 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/vehicle', vehicleRoutes); // This should be a function, not a string
+app.get('/', (req, res) => {
+    res.send('Welcome to the Vehicle Movement Backend');
+});
+
 
 const PORT = process.env.PORT || 5000;
 
