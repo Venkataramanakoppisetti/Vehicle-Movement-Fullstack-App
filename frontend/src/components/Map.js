@@ -21,10 +21,10 @@ const Map = () => {
             initializeMap();
         } else {
             const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&callback=initMap`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
             script.async = true;
             script.defer = true;
-            window.initMap = initializeMap;
+            script.onload = initializeMap; // Call directly after loading
             document.head.appendChild(script);
         }
     }, []);
@@ -52,12 +52,8 @@ const Map = () => {
                 const googleMaps = window.google.maps;
 
                 // Clear existing markers and path
-                if (map.markers) {
-                    map.markers.forEach(marker => marker.setMap(null));
-                }
-                if (map.path) {
-                    map.path.setMap(null);
-                }
+                map.markers?.forEach(marker => marker.setMap(null));
+                map.path?.setMap(null);
 
                 // Create markers and path
                 const pathCoordinates = vehicleData.map(item => ({
