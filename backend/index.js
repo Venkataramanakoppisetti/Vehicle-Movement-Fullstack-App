@@ -1,16 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const vehicleRoutes = require('./routes/vehicle'); // Ensure the correct path
+const vehicleRoutes = require('./routes/vehicle'); 
 
 
-dotenv.config(); // Load environment variables from .env file
-
+dotenv.config(); 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/vehicle', vehicleRoutes); // This should be a function, not a string
+app.use('/api/vehicle', vehicleRoutes); 
 app.get('/', (req, res) => {
     res.send('Welcome to the Vehicle Movement Backend');
 });
